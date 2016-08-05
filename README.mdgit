@@ -1,0 +1,1 @@
+"# ServiceKg_Server"  initgit add README.mdgit commit -m "first commit"git remote add origin https://github.com/Suimonkul/ServiceKg_Server.gitgit push -u origin master
