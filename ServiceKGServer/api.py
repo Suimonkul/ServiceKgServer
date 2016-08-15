@@ -1,5 +1,6 @@
 from tastypie import fields
 from tastypie.constants import ALL
+from tastypie.paginator import Paginator
 from tastypie.resources import ModelResource, ALL_WITH_RELATIONS
 
 from ServiceKGServer.models import Category, Advertisement, PageDataAddition
@@ -20,7 +21,10 @@ class ADVResource(PageDataAddition, ModelResource):
     class Meta:
         queryset = Advertisement.objects.order_by('position')
         resource_name = 'advert'
+        resource_name_page = 'page'
         filtering = {
             'name': ALL_WITH_RELATIONS,
             'category': ALL_WITH_RELATIONS
         }
+
+        class_paginator = Paginator
