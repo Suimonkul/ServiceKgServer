@@ -24,6 +24,7 @@ v1.register(CategoryResource())
 v1.register(ADVResource())
 
 urlpatterns = patterns('',
+                       url(r'^jet/', include('jet.urls', 'jet')),
                        url(r'^admin/', admin.site.urls),
                        url(r'^api/', include(v1.urls)),
                        )

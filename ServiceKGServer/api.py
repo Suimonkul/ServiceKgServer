@@ -1,5 +1,10 @@
+from sqlite3 import IntegrityError
+
 from tastypie import fields
+from tastypie.authentication import Authentication
+from tastypie.authorization import Authorization
 from tastypie.constants import ALL
+from tastypie.exceptions import BadRequest
 from tastypie.paginator import Paginator
 from tastypie.resources import ModelResource, ALL_WITH_RELATIONS
 
@@ -19,7 +24,10 @@ class ADVResource(PageDataAddition, ModelResource):
     category = fields.ForeignKey(CategoryResource, 'category', null=True)
 
     class Meta:
+        limit = 0
+        allowed_methods = ['get', 'post', 'put', 'delete', 'patch']
         queryset = Advertisement.objects.order_by('position')
+        position = 100
         resource_name = 'advert'
         resource_name_page = 'page'
         filtering = {
@@ -28,3 +36,16 @@ class ADVResource(PageDataAddition, ModelResource):
         }
 
         class_paginator = Paginator
+        authorization = Authorization()
+        authentication = Authentication()
+        include_resource_uri = False
+
+    def obj_create(self, bundle, **kwargs):
+        try:
+            bundle = super(ADVResource, self).obj_create(bundle, **kwargs)
+            bundle.obj.user.set_password(bundle.data['user'].get('password'))
+            bundle.obj.user.save()
+        except IntegrityError:
+            print "error : user already exists."
+            raise BadRequest('That username already exists')
+        return bundle

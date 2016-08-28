@@ -27,8 +27,8 @@ class Advertisement(models.Model):
     # from_datetime = models.DateTimeField(null=True, verbose_name="FROM TIME")
     # to_datetime = models.DateTimeField(null=True, verbose_name="TO TIME")
 
-    created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True, null=True)
-    updated_at = models.DateTimeField(verbose_name='Дата редактирования', auto_now=True, null=True)
+    # created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True, null=True)
+    # updated_at = models.DateTimeField(verbose_name='Дата редактирования', auto_now=True, null=True)
 
     def __unicode__(self):
         return 'Категория = %s,  Позиция = %s,  Имя = %s ' % (self.category, self.position, self.name)
