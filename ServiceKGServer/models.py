@@ -15,7 +15,9 @@ class Category(models.Model):
 
 
 class Advertisement(models.Model):
-    name = models.CharField(verbose_name='Имя', max_length=1000, unique=False, null=False)
+    active = models.BooleanField(verbose_name='Показать', default=False)
+    name = models.CharField(verbose_name='Имя', max_length=120, unique=False, null=False)
+    title = models.CharField(verbose_name='Заголовок', max_length=120, null=False)
     description = models.CharField(verbose_name='Описание', max_length=10000, unique=False, null=False)
     phone = models.IntegerField(verbose_name='Телефон', null=False)
     phone_two = models.IntegerField(verbose_name="Телефон 2", null=True, blank=True)
@@ -32,13 +34,3 @@ class Advertisement(models.Model):
 
     def __unicode__(self):
         return 'Категория = %s,  Позиция = %s,  Имя = %s ' % (self.category, self.position, self.name)
-
-
-class PageDataAddition(object):
-    def alter_list_data_to_serialize(self, request, data):
-        data['category'] = {'title': True,
-                            'names': 'sss',
-                            'url': 'http://192.168.0.102/api/v1/advert/?format=json',
-                            'int': 124,
-                            'array': ['Комп', 'Мас', 'кас', 'стар']}
-        return data

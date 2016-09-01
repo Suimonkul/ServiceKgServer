@@ -13,10 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, patterns, include
+from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from tastypie.api import Api
 
+from ServiceKGServer import views
 from ServiceKGServer.api import CategoryResource, ADVResource
 
 v1 = Api(api_name='v1')
@@ -27,4 +28,5 @@ urlpatterns = patterns('',
                        url(r'^jet/', include('jet.urls', 'jet')),
                        url(r'^admin/', admin.site.urls),
                        url(r'^api/', include(v1.urls)),
+                       url(r'^register/$', views.post_register, name='register'),
                        )
