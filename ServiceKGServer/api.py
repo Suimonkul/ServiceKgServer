@@ -15,6 +15,8 @@ class CategoryResource(ModelResource):
             'name': ALL
         }
 
+    childCategories = fields.ToManyField('ServiceKGServer.api.CategoryResource', 'category_set', full=True, null=True)
+
 
 class ADVResource(ModelResource):
     category = fields.ForeignKey(CategoryResource, 'category', null=True)

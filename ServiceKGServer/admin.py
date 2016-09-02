@@ -5,7 +5,8 @@ from ServiceKGServer.models import Category, Advertisement
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'id', ]
+    list_display = ['name', 'parent', ]
+    list_filter = ['name', 'parent']
 
 
 admin.site.register(Category, CategoryAdmin)

@@ -9,6 +9,7 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(verbose_name='Категория', max_length=50, unique=False, null=False)
+    parent = models.ForeignKey('self', verbose_name='parent', null=True, blank=True)
 
     def __unicode__(self):
         return '%s' % (self.name)
