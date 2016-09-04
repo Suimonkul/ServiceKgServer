@@ -8,6 +8,7 @@ from django.db import models
 
 
 class Category(models.Model):
+    id = models.IntegerField(verbose_name="ID", unique=True, primary_key=True)
     name = models.CharField(verbose_name='Категория', max_length=50, unique=False, null=False)
     parent = models.ForeignKey('self', verbose_name='parent', null=True, blank=True)
 
