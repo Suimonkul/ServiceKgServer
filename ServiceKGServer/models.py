@@ -23,7 +23,7 @@ class Advertisement(models.Model):
     phone = models.IntegerField(verbose_name='Телефон', null=False)
     phone_two = models.IntegerField(verbose_name="Телефон 2", null=True, blank=True)
     phone_three = models.IntegerField(verbose_name="Телефон 3", null=True, blank=True)
-    order = models.CharField(verbose_name="Цена услуги", blank=True, null=True, max_length=100)
+    order = models.IntegerField(verbose_name="Цена услуги", blank=False, null=False, help_text="в сомах")
     position = models.IntegerField(verbose_name='Позиция', null=False)
     category = models.ForeignKey(Category, null=True, verbose_name="Выберите категорию")
 
