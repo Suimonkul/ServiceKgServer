@@ -1,3 +1,5 @@
+# coding=utf-8
+from __future__ import unicode_literals
 from tastypie import fields
 from tastypie.authorization import Authorization
 from tastypie.constants import ALL
@@ -5,6 +7,8 @@ from tastypie.paginator import Paginator
 from tastypie.resources import ModelResource, ALL_WITH_RELATIONS
 
 from ServiceKGServer.models import Category, Advertisement
+
+
 
 
 class CategoryResource(ModelResource):

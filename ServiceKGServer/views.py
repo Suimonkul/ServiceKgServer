@@ -1,3 +1,4 @@
+# coding=utf-8
 # Create your views here
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
